@@ -36,7 +36,16 @@ export default function useView(props, emit) {
         emit('zoomChanged', getZoom())
     });
 
-    view.on('change:resolution', () => emit('resolutionChanged', getResolution()));
+    // NOTE: zoomChanged does not exist as a built-in event,
+    // so it was being assumed when the center changed.
+    // However, the center does not change when using the
+    // zoom and sliderZoom map controls, so no zoomChanged
+    // was being triggered. Therefore, we will also use the
+    // change:resolution event to emit a 'zoomChanged' event.
+    view.on('change:resolution', () => {
+        emit('resolutionChanged', getResolution())
+        emit('zoomChanged', getZoom())
+    });
 
     view.on('change:rotation', () => emit('rotationChanged', getRotation()));
 
