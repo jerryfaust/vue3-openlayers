@@ -20,7 +20,7 @@ import Draw from 'ol/interaction/Draw';
 
 export default {
     name: 'ol-interaction-draw',
-    emits: ["drawstart", "drawend"],
+    emits: ["drawstart", "drawend", "drawabort"],
     setup(props, {
         emit
     }) {
@@ -74,6 +74,10 @@ export default {
                 emit('drawend', event)
             })
 
+            draw.on('drawabort', (event) => {
+                emit('drawabort', event)
+            })
+
             return draw;
 
         };
@@ -104,6 +108,8 @@ export default {
             map.changed()
         })
 
+        const removeLastPoint = () => draw.removeLastPoint();
+
         onMounted(() => {
             map.addInteraction(draw);
 
@@ -114,6 +120,8 @@ export default {
         });
 
        provide('stylable', draw)
+
+       return { removeLastPoint }
     },
     props: {
 

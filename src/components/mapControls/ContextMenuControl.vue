@@ -14,9 +14,11 @@ export default {
     name: 'ol-context-menu',
     // expose the built-in events
     emits: ['beforeopen', 'open', 'close', 'add-menu-entry'],
-    setup(props,context) {
+    setup(props, context) {
         // methods existing in the ol-contextmenu control
         // that should be reachable via ol-context-menu
+        const enable = () => control.value.enable();
+        const disable = () => control.value.disable();
         const clear = () => control.value.clear();
         const close = () => control.value.close();
         const extend = (arr) => control.value.extend(arr);
@@ -45,7 +47,7 @@ export default {
         })
 
         return {
-            control,
+            control, enable, disable,
             clear, close, extend, push, shift, pop, getDefaultItems, isOpen, updatePosition
         }
 
@@ -57,15 +59,15 @@ export default {
         },
         defaultItems: {
             type: Boolean,
-            default:true
+            default: true
         },
         width: {
             type: Number,
-            default:150
+            default: 150
         },
         items: {
             type: Array,
-            default: ()=>[]
+            default: () => []
         }
     }
 }
