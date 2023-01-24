@@ -11,13 +11,20 @@ import {provide} from "vue"
 export default {
     name: 'ol-control-bar',
     setup(props,context) {
+
+        const getControls = () => control.value.getControls();
+        const getControlsByName = (n) => control.value.getControlsByName(n);
+
         const {
             control
         } = useControl(Bar, props,context);
 
         provide('controlBar',control)
+
         return {
-            control
+            control,
+            getControls,
+            getControlsByName
         }
 
     },

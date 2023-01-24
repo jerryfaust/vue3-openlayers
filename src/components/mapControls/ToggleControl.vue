@@ -11,12 +11,22 @@ import useControl from '@/composables/useControl'
 export default {
     name: 'ol-control-toggle',
     setup(props,context) {
+        // activate or deactivate control
+        const setActive = (b) => control.value.setActive(b);
+        // disable or enable the control
+        const setDisable = (b) => control.value.setDisable(b);
+        // toggle control state
+        const toggle = () => control.value.toggle();
+
         const {
             control
         } = useControl(Toggle, props,context);
 
         return {
-            control
+            control,
+            setActive,
+            setDisable,
+            toggle
         }
 
     },
