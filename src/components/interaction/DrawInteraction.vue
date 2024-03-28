@@ -108,6 +108,7 @@ export default {
             map.changed()
         })
 
+        const abortDrawing = () => draw.abortDrawing();
         const removeLastPoint = () => draw.removeLastPoint();
 
         onMounted(() => {
@@ -121,7 +122,7 @@ export default {
 
        provide('stylable', draw)
 
-       return { removeLastPoint }
+       return { abortDrawing, removeLastPoint }
     },
     props: {
 

@@ -77,8 +77,8 @@
   ],
   "devDependencies": {
     "@types/node": "^17.0.35",
-    "@vitejs/plugin-vue": "^2.3.3",
-    "vite": "^2.9.9",
+    "@vitejs/plugin-vue": "^2.3.4",
+    "vite": "^2.9.15",
     "vue": "^3.2.36"
   }
 }
