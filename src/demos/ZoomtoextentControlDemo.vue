@@ -1,0 +1,18 @@
+<template>
+  <ol-map style="height: 400px" :controls="[]">
+    <ol-view :center="center" :zoom="zoom" :projection="projection" />
+
+    <ol-tile-layer>
+      <ol-source-osm />
+    </ol-tile-layer>
+    <ol-zoomtoextent-control tipLabel="Fit to Turkey" />
+  </ol-map>
+</template>
+
+<script setup>
+import { ref } from "vue";
+
+const center = ref([40, 40]);
+const projection = ref("EPSG:4326");
+const zoom = ref(8);
+</script>
